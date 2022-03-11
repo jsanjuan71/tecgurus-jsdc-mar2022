@@ -36,10 +36,21 @@ for (const opcion of opciones) {
 menu.innerHTML = template;
 
 menu.innerHTML = "";
+
+
+function stringToDOM(str, other) {
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(str, 'text/html');
+    let template = "dhjf";
+	return doc.body;
+};
+
 for (const opcion of opciones) {
-    //let template = `<li>${opcion}</li>`;
-    let li = document.createElement("li");
-    li.innerHTML = opcion;
-    menu.appendChild( li );
+    //let template =  `<li>${opcion}</li>`;
+    //let li = document.createElement("li");
+    //li.innerHTML = opcion;
+    menu.appendChild( stringToDOM(`<li>${opcion}</li>`, true) );
 }
+
+menu.appendChild( stringToDOM(`<li>Other</li>`, true) );
 
