@@ -15,7 +15,7 @@ const fecha = document.getElementById("fecha");
 
 const now = new Date();
 
-const months = ["ene", "feb", "mzo", "apr", "may", "jun", "jul","sep"];
+const months = ["ene", "feb", "mzo", "apr", "may", "jun", "jul","sep","oct","nov","dic"];
 
 const fullDate = `${now.getDate()}-${months[now.getMonth()]}-${now.getFullYear()}`;
 
