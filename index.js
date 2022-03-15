@@ -5,6 +5,7 @@ const monthNames = ["Enero", "Febro", "Marzo", "Abril", "Mayo", "Junio", "Julio"
 let config = {
     name: "TG Store",
     date: new Date(),
+    logo: "./assets/images/logo.jpg",
     menu: [
         { name: "inicio", href: "#"},
         { name: "Nosotros", href: "#"},
@@ -25,7 +26,8 @@ Object.freeze(config);
 document.getElementById('title').innerHTML = config.name;
 document.getElementById('presentation').innerText = config.presentation;
 document.getElementById('date').innerHTML = `${config.date.getDate()}/${monthNames[config.date.getMonth()]}/${config.date.getFullYear()}`;
-document.getElementById('menu').innerHTML = getMenu(config.menu)
+document.getElementById('menu').innerHTML = getMenu(config.menu);
+document.getElementById('logo').setAttribute("src", config.logo);
 
 function stringToHTML(str) {
 	var parser = new DOMParser();
