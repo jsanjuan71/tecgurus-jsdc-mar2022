@@ -38,12 +38,6 @@ menu.innerHTML = template;
 menu.innerHTML = "";
 
 
-function stringToDOM(str, other) {
-	var parser = new DOMParser();
-	var doc = parser.parseFromString(str, 'text/html');
-    let template = "dhjf";
-	return doc.body;
-};
 
 for (const opcion of opciones) {
     //let template =  `<li>${opcion}</li>`;
