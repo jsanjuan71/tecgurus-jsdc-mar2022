@@ -30,15 +30,15 @@ document.getElementById('menu').innerHTML = getMenu(config.menu);
 document.getElementById('logo').setAttribute("src", config.logo);
 
 function stringToHTML(str) {
-	var parser = new DOMParser();
-	var doc = parser.parseFromString(str, 'text/html');
+	let parser = new DOMParser();
+	let doc = parser.parseFromString(str, 'text/html');
 	return doc.body;
 };
 
 function getMenu(menu) {
-    let stringMenu = '';
+    let stringMenu = '<ul>';
     menu.forEach(element => {
         stringMenu += `<li><a href="${element.href}">${element.name}</a></li>`;
     });
-    return stringMenu;
+    return stringMenu + '</ul>';
 }
