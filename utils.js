@@ -8,3 +8,9 @@ function stringToDOM(str) {
 function moneyFormat( amount, currency = "MXN" ){
     return `$${amount} ${currency}`;
 }
+
+function clicEnElBoton(eventData) {
+	console.log(eventData);
+	console.log(eventData.dataset);
+	console.log(eventData.dataset.id);
+}

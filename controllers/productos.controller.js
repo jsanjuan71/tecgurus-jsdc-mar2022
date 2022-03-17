@@ -1,6 +1,7 @@
 let productos = [];
 
 let producto = {
+    "sku": "CURJSDC", 
     "nombre": "Curso Javascript desde cero",
     "precio": 229,
     "descripcion": "Inicia en el maravilloso mundo de JS",
@@ -11,6 +12,7 @@ let producto = {
 productos.push(producto);
 
 productos.push({
+    "sku": "CURJAVADC",
     "nombre": "Java desde cero",
     "precio": 199,
     "descripcion": "Inicia en el maravilloso mundo de Java",
@@ -19,6 +21,7 @@ productos.push({
 });
 
 productos.push({
+    "sku": "CURCHSARPDC",
     "nombre": "Curso C#  desde cero",
     "precio": 300,
     "descripcion": "Inicia en el maravilloso mundo de React native",
@@ -27,16 +30,18 @@ productos.push({
 });
 
 productos.push({
-    "nombre": "Curso AWS native desde cero",
-    "precio": 300,
+    "sku": "CURAWSDC",
+    "nombre": "Curso AWS desde cero",
+    "precio": 149,
     "descripcion": "Inicia en el maravilloso mundo de React native",
     "imagen":"aws.jpeg",
     "existencia": 1
 });
 
 productos.push({
-    "nombre": "Curso nodejs native desde cero",
-    "precio": 300,
+    "sku": "CURNODEJSDC",
+    "nombre": "Curso nodejs desde cero",
+    "precio": 349,
     "descripcion": "Inicia en el maravilloso mundo de React native ultimo",
     "imagen":"nodejs.png",
     "existencia": 1
@@ -59,7 +64,7 @@ console.log( productos.slice(-1).pop().descripcion );
 
 const productosContainer = document.getElementById("lista_productos");
 
-function getCardLayout( title, description, quantity, action, imagePath, stock ) {
+function getCardLayout( title, description, quantity, action, imagePath, stock, sku ) {
     const stockDisplay = stock === 0 ? 
         `<div class="alert alert-danger" role="alert">Sin stock</div>` : 
         `<span class="badge bg-secondary">${stock}</span>`;
@@ -71,7 +76,7 @@ function getCardLayout( title, description, quantity, action, imagePath, stock )
                 <h5 class="card-title">${title}</h5>
                 <p class="card-text">${description}</p>
                 <p>${ moneyFormat(quantity) } ${stockDisplay}</p>
-                <a href="#" class="btn btn-primary ${ stock === 0 ? "disabled" : "" } ">${action}</a>
+                <a onClick="clicEnElBoton(this)" data-id="${sku}"  href="javascript:()=>false;" class="btn btn-primary ${ stock === 0 ? "disabled" : "" } ">${action}</a>
                 </div>
             </div>
         </div>
@@ -84,12 +89,15 @@ const potencia = num => Math.pow( getPrice(num) ,2);
 
 const x = 10 + 2;
 
-
-const sumar = function(a,b) { // funcion como expresion
-    return a-b;
+function sumar_(a, b) { //funcion normal
+    return a+b;
 }
 
-const sumarConFlecha = (a,b) => a+b;
+const sumar = function(a,b) { // funcion como expresion
+    return a+b;
+}
+
+const sumarConFlecha = (a,b) => a+b; // función flecha
 
 console.log( sumar(5, 7) ); 
 
@@ -100,7 +108,7 @@ console.log( sumar(5, 7) );
     productosContainer.append(newProduct);
 }*/
 productos.map( producto => 
-    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `assets/images/products/${producto.imagen}`, producto.existencia )
+    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `assets/images/products/${producto.imagen}`, producto.existencia, producto.sku )
 );
 
 /*productos.forEach( (producto, index) => {
