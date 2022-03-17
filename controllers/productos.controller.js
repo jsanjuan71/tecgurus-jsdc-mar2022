@@ -59,7 +59,10 @@ console.log( productos.slice(-1).pop().descripcion );
 
 const productosContainer = document.getElementById("lista_productos");
 
-function getCardLayout( title, description, quantity, action, imagePath ) {
+function getCardLayout( title, description, quantity, action, imagePath, stock ) {
+    const stockDisplay = stock === 0 ? 
+        `<div class="alert alert-danger" role="alert">Sin stock</div>` : 
+        `<span class="badge bg-secondary">${stock}</span>`;
     const template = `
         <div class="col">
             <div class="card" style="width: 18rem;">
@@ -67,8 +70,8 @@ function getCardLayout( title, description, quantity, action, imagePath ) {
                 <div class="card-body">
                 <h5 class="card-title">${title}</h5>
                 <p class="card-text">${description}</p>
-                <p>${ moneyFormat(quantity) }</p>
-                <a href="#" class="btn btn-primary">${action}</a>
+                <p>${ moneyFormat(quantity) } ${stockDisplay}</p>
+                <a href="#" class="btn btn-primary ${ stock === 0 ? "disabled" : "" } ">${action}</a>
                 </div>
             </div>
         </div>
@@ -97,7 +100,7 @@ console.log( sumar(5, 7) );
     productosContainer.append(newProduct);
 }*/
 productos.map( producto => 
-    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `assets/images/products/${producto.imagen}` )
+    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `assets/images/products/${producto.imagen}`, producto.existencia )
 );
 
 /*productos.forEach( (producto, index) => {
