@@ -7,20 +7,56 @@
         <title>TecGurus | Javascript desde cero</title>
         <meta name="description" content="A simple HTML5 Template for new projects.">
         <meta name="author" content="SitePoint">
+        <link rel="stylesheet" href="./assets/plugins/bootstrap-5.1.3/css/bootstrap.min.css" />
     </head>
     <body>
-        <header>
-            <h1 id="title">TG Store</h1>
-            <img id="logo" src="">
-            <nav id="menu"></nav>
-        </header>
-        
-        <p id="presentation"></p>
+        <div class="container">
+            <header>
+                <div class="row m-3">
+                    <div class="col-3"><img id="logo" class="img-fluid" src=""></div>
+                    <div class="col text-center align-middle"><h1 id="title" class="align-middle"></h1></div>
+                    <div class="col-3"></div>
+                </div>
+                
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div  class="collapse navbar-collapse" id="navbarNav">
+                            <ul id="menu" class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled">Disabled</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>  
+             
+            <p id="presentation" class="mt-2"></p>
 
-        <footer id="footer">
-            <p id="date"></p>
-        </footer>
-        <script src="./index.js"></script>
+            <div id="lista_productos"></div>
+
+            <footer id="footer">
+                <p id="date"></p>
+            </footer>
+        </div>
+
+       
+        <script type="text/javascript" src="./utils.js"></script>
+        <script type="text/javascript" src="./index.js"></script>
+        <script type="text/javascript" src="./assets/plugins/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
         <script src="./controllers/productos.controller.js"></script>
     </body>
 </html>
