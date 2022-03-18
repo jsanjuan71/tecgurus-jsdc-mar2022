@@ -19,25 +19,25 @@ const months = ["ene", "feb", "mzo", "apr", "may", "jun", "jul","sep","oct","nov
 
 const fullDate = `${now.getDate()}-${months[now.getMonth()]}-${now.getFullYear()}`;
 
-fecha.innerHTML = fullDate;
+fecha.innerHTML = fullDate; // poner la fecha actual en el pie de página
 
-if(presentacion)
+if(presentacion) // esto solo surte efecto en la portada
     presentacion.innerHTML = finalParagraph;
 
-const menu = document.getElementById("menu");
+const menu = document.getElementById("menu"); // obtener el menu
 
-const opcionesAdvanced = [
+const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del archivo de la pagina a navegar
     {"label": "inicio", "page": "index"},
     {"label": "productos", "page": "views/productos"},
     {"label": "carrito", "page": "views/carrito"},
     {"label": "contacto", "page": "views/contacto"}
 ];
 
-for (const opcion of opcionesAdvanced) {
+for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label y page configurados
     menu.appendChild(
         stringToDOM(
             `<li class="nav-item" onClick="clickOnMenu(this)" data-option="${opcion.page}">
-                <a class="nav-link active" aria-current="page" href="#">${opcion.label}</a>
+                <a class="nav-link ${window.location.pathname.includes(opcion.page)? "active":""} " href="#">${opcion.label}</a>
             </li>`)
     );
 }

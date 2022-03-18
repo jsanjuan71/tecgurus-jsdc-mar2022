@@ -26,7 +26,5 @@ function getRowLayout( dataList ) {
 
 function clickOnMenu(eventData) {
 	const page = eventData.dataset.option;
-	console.log(page);
-	console.log(window.location);
-	//window.location = window.location. + "/" + page + ".html";
+	window.location.replace(`/${page}.html`);
 }
