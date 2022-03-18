@@ -21,47 +21,36 @@ const fullDate = `${now.getDate()}-${months[now.getMonth()]}-${now.getFullYear()
 
 fecha.innerHTML = fullDate;
 
-presentacion.innerHTML = finalParagraph;
+if(presentacion)
+    presentacion.innerHTML = finalParagraph;
 
 const menu = document.getElementById("menu");
 
-const opciones= ["Inicio", "Productos","Carrito"];
+const opcionesAdvanced = [
+    {"label": "inicio", "page": "index"},
+    {"label": "productos", "page": "views/productos"},
+    {"label": "carrito", "page": "views/carrito"},
+    {"label": "contacto", "page": "views/contacto"}
+];
 
-let menuOps = "<li>"+opciones.join("</li><li>")+"</li>";
-
-let template = '';
-for (const opcion of opciones) {
-    template += `<li>${opcion}</li>`;
+for (const opcion of opcionesAdvanced) {
+    menu.appendChild(
+        stringToDOM(
+            `<li class="nav-item" onClick="clickOnMenu(this)" data-option="${opcion.page}">
+                <a class="nav-link active" aria-current="page" href="#">${opcion.label}</a>
+            </li>`)
+    );
 }
-menu.innerHTML = template;
-
-menu.innerHTML = "";
-
-
-
-for (const opcion of opciones) {
-    //let template =  `<li>${opcion}</li>`;
-    //let li = document.createElement("li");
-    //li.innerHTML = opcion;
-    menu.appendChild( stringToDOM(`<li>${opcion}</li>`, true) );
-}
-
-menu.appendChild( stringToDOM(`<li>Other</li>`, true) );
-
-//let productos = [];
 
 window.productos = [];
-
-let producto = {
+window.productos.push({
     "sku": "CURJSDC", 
     "nombre": "Curso Javascript desde cero",
     "precio": 229,
     "descripcion": "Inicia en el maravilloso mundo de JS",
     "imagen":"javascript.png",
     "existencia": 1
-}
-
-window.productos.push(producto);
+});
 
 window.productos.push({
     "sku": "CURJAVADC",

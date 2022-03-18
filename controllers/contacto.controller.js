@@ -60,7 +60,7 @@ console.log( sumar(5, 7) );
     productosContainer.append(newProduct);
 }*/
 window.productos.map( producto => 
-    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `../assets/images/products/${producto.imagen}`, producto.existencia, producto.sku )
+    productosContainer.innerHTML += getCardLayout( producto.nombre, producto.descripcion, producto.precio, "Add", `assets/images/products/${producto.imagen}`, producto.existencia, producto.sku )
 );
 
 /*productos.forEach( (producto, index) => {

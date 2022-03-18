@@ -24,5 +24,9 @@ function getRowLayout( dataList ) {
 	return template;
 }
 
-
-//var productos = [];
+function clickOnMenu(eventData) {
+	const page = eventData.dataset.option;
+	console.log(page);
+	console.log(window.location);
+	//window.location = window.location. + "/" + page + ".html";
+}
