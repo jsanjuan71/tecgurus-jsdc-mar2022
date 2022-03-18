@@ -1,8 +1,15 @@
+let cart = localStorage.getItem("cart");
 
+if(!cart) { // si el carrito no existe se crea
+    cart = JSON.stringify([]);
+    localStorage.setItem("cart", cart );
 
-const cart = localStorage.getItem("cart");
+}
 
-const cartAsJson = JSON.parse(cart);
+const cartAsJson = JSON.parse(cart); // se pasa de string a objeto json
+
+console.log("carrito", cartAsJson);
+console.log("productos", window.productos);
 
 for (const producto of cartAsJson) {
     getRowLayout( [
