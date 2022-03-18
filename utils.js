@@ -14,3 +14,15 @@ function clicEnElBoton(eventData) {
 	console.log(eventData.dataset);
 	console.log(eventData.dataset.id);
 }
+
+function getRowLayout( dataList ) {
+	let template = "<tr>";
+	for (const cell of dataList) {
+		template += `<td>${cell}</td>`;
+	}
+	template += "</tr>";
+	return template;
+}
+
+
+//var productos = [];

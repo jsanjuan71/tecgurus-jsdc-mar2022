@@ -20,6 +20,11 @@ Javascript desde cero by TecGurus
     ###### Agregar
 #### Carrito de compras
     ##### Desgloce
+            detalle
+            precio
+            cantidad
+            subtotal
+            descuento
     ##### Total compra
     ##### Descuentos
     ##### Impuestos

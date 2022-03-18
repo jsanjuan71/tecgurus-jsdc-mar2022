@@ -48,3 +48,53 @@ for (const opcion of opciones) {
 
 menu.appendChild( stringToDOM(`<li>Other</li>`, true) );
 
+//let productos = [];
+
+window.productos = [];
+
+let producto = {
+    "sku": "CURJSDC", 
+    "nombre": "Curso Javascript desde cero",
+    "precio": 229,
+    "descripcion": "Inicia en el maravilloso mundo de JS",
+    "imagen":"javascript.png",
+    "existencia": 1
+}
+
+window.productos.push(producto);
+
+window.productos.push({
+    "sku": "CURJAVADC",
+    "nombre": "Java desde cero",
+    "precio": 199,
+    "descripcion": "Inicia en el maravilloso mundo de Java",
+    "imagen":"java.jpeg",
+    "existencia": 0
+});
+
+window.productos.push({
+    "sku": "CURCHSARPDC",
+    "nombre": "Curso C#  desde cero",
+    "precio": 300,
+    "descripcion": "Inicia en el maravilloso mundo de React native",
+    "imagen":"csharp.jpeg",
+    "existencia": 1
+});
+
+window.productos.push({
+    "sku": "CURAWSDC",
+    "nombre": "Curso AWS desde cero",
+    "precio": 149,
+    "descripcion": "Inicia en el maravilloso mundo de React native",
+    "imagen":"aws.jpeg",
+    "existencia": 1
+});
+
+window.productos.push({
+    "sku": "CURNODEJSDC",
+    "nombre": "Curso nodejs desde cero",
+    "precio": 349,
+    "descripcion": "Inicia en el maravilloso mundo de React native ultimo",
+    "imagen":"nodejs.png",
+    "existencia": 1
+});
