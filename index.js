@@ -31,22 +31,24 @@ let menuOps = "<li>"+opciones.join("</li><li>")+"</li>";
 
 let template = '';
 for (const opcion of opciones) {
-    template += `<li>${opcion}</li>`;
+    template += `<li onClick="clicLinkMenu(this)" data-name="${opcion}">${opcion}</li>`;
 }
 menu.innerHTML = template;
 
 menu.innerHTML = "";
 
-
+function clicLinkMenu(event){
+    console.log(event.dataset.name);
+}
 
 for (const opcion of opciones) {
     //let template =  `<li>${opcion}</li>`;
     //let li = document.createElement("li");
     //li.innerHTML = opcion;
-    menu.appendChild( stringToDOM(`<li>${opcion}</li>`, true) );
+    menu.appendChild( stringToDOM(`<li onClick="clicLinkMenu(this)" data-name="${opcion}">${opcion}</li>`, true) );
 }
 
-menu.appendChild( stringToDOM(`<li>Other</li>`, true) );
+menu.appendChild( stringToDOM(`<li onClick="clicLinkMenu(this)" data-name="${opcion}">Other</li>`, true) );
 
 //let productos = [];
 
