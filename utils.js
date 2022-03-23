@@ -32,3 +32,7 @@ function clickOnMenu(eventData) {
 function getProductImage(imageName) {
 	return `<img width="120px" src="/assets/images/products/${imageName}" />`;
 }
+
+function priceFormatted(price) {
+	return `$ ${price.toFixed(2)}`;
+}

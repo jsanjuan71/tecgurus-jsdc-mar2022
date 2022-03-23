@@ -75,9 +75,9 @@ for (const item of cartAsJson) {
 let impuestos = subtotal * IVA;
 let total = subtotal + impuestos;
 
-subtotaContainer.innerHTML = subtotal;
-impuestosContainer.innerHTML = impuestos;
-totalContainer.innerHTML = total;
+subtotalContainer.innerHTML = priceFormatted(subtotal);
+impuestosContainer.innerHTML = priceFormatted(impuestos);
+totalContainer.innerHTML = priceFormatted(total);
 
 
 //JSON -> onjecto javascript
