@@ -28,3 +28,7 @@ function clickOnMenu(eventData) {
 	const page = eventData.dataset.option;
 	window.location.replace(`/${page}.html`);
 }
+
+function getProductImage(imageName) {
+	return `<img width="120px" src="/assets/images/products/${imageName}" />`;
+}

@@ -25,9 +25,9 @@ if(presentacion) // esto solo surte efecto en la portada
     presentacion.innerHTML = finalParagraph;
 
 const menu = document.getElementById("menu"); // obtener el menu
-
+const opciones = ["inicio", "productos","carrito"];
 const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del archivo de la pagina a navegar
-    {"label": "inicio", "page": "index"},
+    {"label": "Home", "page": "index"},
     {"label": "productos", "page": "views/productos"},
     {"label": "carrito", "page": "views/carrito"},
     {"label": "contacto", "page": "views/contacto"}
@@ -46,7 +46,7 @@ window.productos = [];
 window.productos.push({
     "sku": "CURJSDC", 
     "nombre": "Curso Javascript desde cero",
-    "precio": 229,
+    "precio": 229.516,
     "descripcion": "Inicia en el maravilloso mundo de JS",
     "imagen":"javascript.png",
     "existencia": 1
