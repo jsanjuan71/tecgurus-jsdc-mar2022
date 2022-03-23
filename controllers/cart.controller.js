@@ -1,4 +1,4 @@
-/*localStorage.setItem("cart", JSON.stringify([
+localStorage.setItem("cart", JSON.stringify([
     {
         sku : "CURJSDC",
         cantidad: 2,
@@ -9,7 +9,7 @@
         cantidad: 1,
         descuento: 0
     }
-])); */
+])); 
 
 let cart = localStorage.getItem("cart");
 
@@ -62,6 +62,22 @@ for (const item of cartAsJson) {
     cartContainer.innerHTML += newRow;
 }
 
+const subtotalContainer = document.getElementById("subtotal");
+const impuestosContainer = document.getElementById("impuestos");
+const totalContainer = document.getElementById("total");
+
+let subtotal = 0;
+for (const item of cartAsJson) {
+    let prod = window.productos.find( (producto) => producto.sku == item.sku )
+    //let prod = findProduct(item.sku);
+    subtotal += prod.precio * item.cantidad;
+}
+let impuestos = subtotal * IVA;
+let total = subtotal + impuestos;
+
+subtotaContainer.innerHTML = subtotal;
+impuestosContainer.innerHTML = impuestos;
+totalContainer.innerHTML = total;
 
 
 //JSON -> onjecto javascript

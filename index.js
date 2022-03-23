@@ -1,5 +1,7 @@
 const presentacion = document.getElementById("presentacion");
 
+const IVA = 0.16;
+
 const anthem = `Mexicanos, al grito de guerra
 El acero aprestad y el bridón
 Y retiemble en sus centros la Tierra
@@ -87,3 +89,4 @@ window.productos.push({
     "imagen":"nodejs.png",
     "existencia": 1
 });
+
