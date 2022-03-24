@@ -78,7 +78,17 @@ window.productos.push({
     "precio": 149,
     "descripcion": "Inicia en el maravilloso mundo de React native",
     "imagen":"aws.jpeg",
-    "existencia": 1
+    "existencia": 1,
+    "categoria" : "curso"
+});
+window.productos.push({
+    "sku": "CURAWSDC",
+    "nombre": "Jersey somos Gurus",
+    "precio": 345,
+    "descripcion": "Inicia en el maravilloso mundo de React native",
+    "imagen":"aws.jpeg",
+    "existencia": 2,
+    "categoria" : "suvenir"
 });
 
 window.productos.push({

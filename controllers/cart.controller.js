@@ -1,4 +1,4 @@
-localStorage.setItem("cart", JSON.stringify([
+/*localStorage.setItem("cart", JSON.stringify([
     {
         sku : "CURJSDC",
         cantidad: 2,
@@ -9,7 +9,7 @@ localStorage.setItem("cart", JSON.stringify([
         cantidad: 1,
         descuento: 0
     }
-])); 
+])); */
 
 let cart = localStorage.getItem("cart");
 
@@ -47,7 +47,7 @@ const cartContainer = document.getElementById("products_on_cart")
 
 
 for (const item of cartAsJson) {
-    let prod = window.productos.find( (producto) => producto.sku == item.sku )
+        
     //let prod = findProduct(item.sku);
     console.log("prod", prod)
     const newRow = getRowLayout( [
