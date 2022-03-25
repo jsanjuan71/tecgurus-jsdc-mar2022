@@ -1,3 +1,7 @@
+import ListaProductos from '/models/listaProductos.class.js';
+
+window.productos = new ListaProductos();
+
 const presentacion = document.getElementById("presentacion");
 
 const IVA = 0.16;
@@ -44,8 +48,19 @@ for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label 
     );
 }
 
-window.productos = [];
-window.productos.push({
+//const productos = [];
+window.productos.agregar( 
+    "CURJSDC", 
+    "Curso Javascript desde cero",
+    229.516,
+    10,
+    "Inicia en el maravilloso mundo de JS",
+    "javascript.png",
+    "curso"
+);
+
+console.log("PRODUCTOS",  window.productos );
+/*productos.push({
     "sku": "CURJSDC", 
     "nombre": "Curso Javascript desde cero",
     "precio": 229.516,
@@ -99,4 +114,4 @@ window.productos.push({
     "imagen":"nodejs.png",
     "existencia": 1
 });
-
+*/

@@ -1,5 +1,6 @@
+import Item from '/models/item.class.js';
 class Carrito{
-    items = undefined;
+    #items = [];
 
     constructor(){
         let cart = localStorage.getItem("cart");
@@ -9,21 +10,46 @@ class Carrito{
 
         }
         let cartAsJson = JSON.parse(cart); // se pasa de string a objeto json
-        this.items = cartAsJson;
+        console.log("cartAsJson", cartAsJson);
+
+        for (const item of cartAsJson) {
+            let newItem = new Item(item.sku, item.cantidad);
+            this.#items.push( newItem )
+        }
+
+        
+        //this.#items = cartAsJson;
     }
 
     agregar(sku) {
-        const item = items.find(item => item.sku == sku);
+        console.log("sku", sku);
+        console.log("items", this.#items );
+        const item = this.#items.find( item => {
+            console.log("item find",item.sku);
+            return item.sku == sku;
+        });
+        console.log("encontrado", item);
+
         if( item ) {
             const agregado = item.agregar();
             if(agregado.done == true) {
-                showDialog("Producto agregado")
+                //showDialog("Producto agregado")
+                console.log("producto agregado");
             } else {
-                showDialog("Producto no agregado porque ", agregado.reason);
+                console.log("producto no agregado por ", agregado.reason);
+                //showDialog("Producto no agregado porque ", agregado.reason);
             }
             
         } else {
-            this.items.push( new Item(sku) )
+            this.#items.push( new Item(sku) )
         }
     }
+
+    verItems() {
+        return this.#items;
+    }
+
+
 }
+
+export {Carrito}

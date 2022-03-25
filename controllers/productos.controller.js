@@ -1,18 +1,19 @@
+//import Producto from "/models/producto.class.js";
 
-//let pila = productos.pop();
-//let cola = productos.shift();
+import {Producto} from '/models/producto.class.js';
+import {Carrito} from '/models/carrito.class.js';
 
-/*let pilaArray = productos[ productos.length - 2 ]
-let colaArray = productos[ 0 ]
+const prod = new Producto("JSDC", "Javascript desde cero")
+prod.obtenerNombre();
 
-console.log( productos.slice(0,2) );
+const carrito = new Carrito();
 
-console.log( productos.slice(2) );
+//carrito.#items.push( 2 );
+carrito.agregar("CURJSDC");
 
-console.log( productos.slice(-1) );
+console.log("carrito", carrito.verItems() );
 
 
-console.log( productos.slice(-1).pop().descripcion ); */
 
 const productosContainer = document.getElementById("lista_productos");
 
