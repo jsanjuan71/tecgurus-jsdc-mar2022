@@ -9,13 +9,16 @@ class Producto {
     imagen = null;
     categoria = 0;
 
-    constructor(sku, nombre, precio, existencia) {
+    constructor(sku, nombre, precio, existencia, descripcion, imagen, categoria) {
         if(typeof sku === 'undefined')
             console.error("Se requiere un SKU para crear un producto.")
         this.#sku = sku;
         this.nombre = nombre;
         this.precio = precio;
         this.#existencia = existencia;
+        this.imagen = descripcion;
+        this.imagen = imagen;
+        this.categoria = categoria;
     }
 
     obtenerNombre(){

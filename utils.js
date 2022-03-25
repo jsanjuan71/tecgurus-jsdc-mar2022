@@ -9,12 +9,6 @@ function moneyFormat( amount, currency = "MXN" ){
     return `$${amount} ${currency}`;
 }
 
-function clicEnElBoton(eventData) {
-	console.log(eventData);
-	console.log(eventData.dataset);
-	console.log(eventData.dataset.id);
-}
-
 function getRowLayout( dataList ) {
 	let template = "<tr>";
 	for (const cell of dataList) {
