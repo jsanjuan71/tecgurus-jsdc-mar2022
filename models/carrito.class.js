@@ -1,5 +1,4 @@
 import Item from '/models/item.class.js';
-import Response from '/models/response.class.js';
 class Carrito{
     #items = [];
 
@@ -18,10 +17,9 @@ class Carrito{
     }
 
     agregar(sku) {
-        const item = this.#items.find( item => {
-            console.log("item find",item.sku);
-            return item.sku == sku;
-        });
+        const item = this.#items.find( item=> {
+            return item.sku == sku
+        } );
         if( item ) {
             const agregado = item.agregar()
             if(agregado.hasDone() == true) {
@@ -39,6 +37,12 @@ class Carrito{
     verItems() {
         return this.#items;
     }
+    /**
+     * 
+     * @returns {number} El subtotal sin impuestos de la suma del subtotal de todos los items
+     */
+    verSubtotal = ()=> this.#items.map(item => item.calcularSubtotal() ).reduce( (prev, cur)=> prev + cur );
+
 }
 
 export {Carrito}

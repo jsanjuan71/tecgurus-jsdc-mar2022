@@ -1,4 +1,6 @@
 
+const IVA = 0.16;
+
 function stringToDOM(str) {
 	var parser = new DOMParser();
 	var doc = parser.parseFromString(str, 'text/html');
