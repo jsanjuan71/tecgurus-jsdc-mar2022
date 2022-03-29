@@ -9,96 +9,118 @@
  * RESULTADO ESPERADO
  * Se debe ver el desgloce del carrito de compras como ya se tenía antes de usar POO
  */
+import {Carrito} from '/models/carrito.class.js';
 
-let cart = localStorage.getItem("cart");
+const cart = new Carrito();
 
-if(!cart) { // si el carrito no existe se crea
-    cart = JSON.stringify([]);
-    localStorage.setItem("cart", cart );
-
-}
-
-const cartAsJson = JSON.parse(cart); // se pasa de string a objeto json
-
-console.log("carrito", cartAsJson);
-console.log("productos2", window.productos);
-
-function doSomething(a, b) {
-    return a + b;
-}
-
-function findProduct(searchedSKU) {
-    
-    window.productos.forEach( (producto, index)=> {
-        console.log(searchedSKU," * " , producto.sku );
-        if(producto.sku == searchedSKU){
-            console.log("Lo encontré: ", searchedSKU);
-            return producto;
-        }   
-            
-    });
-    return null;
-}
-//(param1, param2) => console.log(param1);
-console.log("DONE");
-
-const cartContainer = document.getElementById("products_on_cart")
-
-
-for (const item of cartAsJson) {
-    let prod = findProduct(item.sku);
-    console.log("prod", prod)
-    const newRow = getRowLayout( [
-        getProductImage(prod.imagen),
-        prod.nombre, 
-        `$${prod.precio.toFixed(2)}`,
-        item.cantidad,
-        `$${(prod.precio * item.cantidad).toFixed(2)}`
-
-    ] );
-
-    cartContainer.innerHTML += newRow;
-}
-
+const cartContainer = document.getElementById("products_on_cart");
 const subtotalContainer = document.getElementById("subtotal");
 const impuestosContainer = document.getElementById("impuestos");
 const totalContainer = document.getElementById("total");
 
-let subtotal = 0;
-for (const item of cartAsJson) {
-    let prod = window.productos.find( (producto) => producto.sku == item.sku )
-    //let prod = findProduct(item.sku);
-    subtotal += prod.precio * item.cantidad;
-}
-let impuestos = subtotal * IVA;
-let total = subtotal + impuestos;
+cart.verItems().forEach(item => {
+    let prod = window.productos.obtenerPorSKU( item.sku );
+    if(prod) {
+        const newRow = getRowLayout( [
+            getProductImage(prod.imagen),
+            prod.nombre, 
+            `$${prod.precio.toFixed(2)}`,
+            item.cantidad,
+            `$${(prod.precio * item.cantidad).toFixed(2)}`
+        ] );
+        cartContainer.innerHTML += newRow;
+    }
+    
+});
 
-subtotalContainer.innerHTML = priceFormatted(subtotal);
+//cart.verSubtotal__2();
+
+const subtotal =  cart.verSubtotal();
+const impuestos = subtotal * IVA;
+const total = subtotal + impuestos;
+
+subtotalContainer.innerHTML = priceFormatted( subtotal );
 impuestosContainer.innerHTML = priceFormatted(impuestos);
 totalContainer.innerHTML = priceFormatted(total);
 
 
-//JSON -> onjecto javascript
+//cart.verSubtotalAsyn();
 
-/*var cart = [
-    {
-        sku : "CURJSDC",
-        cantidad: 2,
-        descuento: 1
-    },
-    {
-        sku : "CURNODEJSDC",
-        cantidad: 1,
-        descuento: 0
+const promesa = cart.verSubtotalPromise();
+
+console.log("promesa", promesa);
+
+promesa.then( (numero) => {
+    console.log("logrado", numero);
+});
+
+promesa.catch( (error) => {
+    console.error("fallamos", error);
+});
+
+// Promesa con then-catch (then-catch promises) 
+/*cart.verSubtotalPromise()
+    .then( numero=> {
+        console.log("logrado", numero);
+        cart.verProductosConPromo( numero )
+            .then( descuento => { //callback-hell
+                if( descuento == 50 ){
+                    cart.obtenerProductos50()
+                        .then()
+                        .catch()
+                } else {
+
+                }
+            });
+    })
+    .catch( error=> {
+        console.error("fallamos", error);
+    });
+console.log("jfhfh"); */
+
+// Promesa con async-await (async-await promises)
+
+// try-catch
+
+async function ruleta(){
+    console.log("inicia la ruleta...");
+    try {
+        const num = await cart.verSubtotalPromise();
+        const descuento = await cart.verProductosConPromo( num );
+        //const prods = await cart.obtenerProductos50(descuento);
+
+    } catch (error) {
+        console.log("catch (try-catch)", error);
+        console.log("Sigue participando");
+
+    } finally {
+        console.log("fin de la ruleta");
     }
-];
+}
 
-console.log(cart);
+ruleta();
 
-console.log(cart.toString());
+/*HTTP 
+https://developer.mozilla.org/es/docs/Web/HTTP/Overview
 
-console.log(JSON.stringify(cart)); */
+JSON
+https://www.w3schools.com/js/js_json.asp
 
-//localStorage.setItem("cart",  JSON.stringify(cart) ); 
+API
+REST
+RESTAPI
+https://www.redhat.com/es/topics/api/what-is-a-rest-api
 
+Request
+https://www.javascripture.com/Request
 
+Response
+https://www.javascripture.com/Response
+
+fetch()
+https://es.javascript.info/fetch
+*/
+
+// ver el precio del dolar
+// ver la informacion de un código postal
+// ver información de CURP

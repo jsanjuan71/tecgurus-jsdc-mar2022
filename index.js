@@ -59,7 +59,25 @@ window.productos.agregar(
     "curso"
 );
 
-console.log("PRODUCTOS",  window.productos );
+window.productos.agregar( 
+    "CURJAVADC", 
+    "Java desde cero",
+    199,
+    5,
+    "Inicia en el maravilloso mundo de Java",
+    "java.jpeg",
+    "curso"
+);
+
+window.productos.agregar( 
+    "CURCHSARPDC", 
+    "Curso C#  desde cero",
+    300,
+    3,
+    "Inicia en el maravilloso mundo de C#",
+    "csharp.jpeg",
+    "curso"
+);
 /*productos.push({
     "sku": "CURJSDC", 
     "nombre": "Curso Javascript desde cero",

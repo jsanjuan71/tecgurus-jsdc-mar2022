@@ -40,7 +40,7 @@ class Item {
     }
 
     calcularSubtotal() {
-        const prod = obtenerPorSKU(this.sku);
+        const prod = window.productos.obtenerPorSKU(this.sku);
 
         return this.cantidad * prod.precio;
     }

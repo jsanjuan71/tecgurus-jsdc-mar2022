@@ -16,8 +16,9 @@ class Producto {
         this.nombre = nombre;
         this.precio = precio;
         this.#existencia = existencia;
-        this.imagen = descripcion;
+        this.descripcion = descripcion;
         this.imagen = imagen;
+        console.log(sku, imagen);
         this.categoria = categoria;
     }
 
