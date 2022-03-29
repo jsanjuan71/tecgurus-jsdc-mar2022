@@ -30,7 +30,10 @@ class Carrito{
                 console.log("producto no agregado por ", agregado.result());
             }
         } else {
-            this.#items.push( new Item(sku) )
+            this.#items.push( new Item(sku) );
+            let nuevoCarrito = this.#items.map( itemObj => itemObj.toPlainObject() );
+            localStorage.setItem("cart", JSON.stringify(nuevoCarrito) );
+            console.log("producto creado");
         }
     }
 
