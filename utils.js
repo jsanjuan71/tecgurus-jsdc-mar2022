@@ -1,6 +1,8 @@
 
 const IVA = 0.16;
 
+const cambioDolar = 20.4;
+
 function stringToDOM(str) {
 	var parser = new DOMParser();
 	var doc = parser.parseFromString(str, 'text/html');
@@ -32,3 +34,8 @@ function getProductImage(imageName) {
 function priceFormatted(price) {
 	return `$ ${price.toFixed(2)}`;
 }
+
+function obtenerAleatorio(){
+	return Math.floor(Math.random() * 10) + 1;
+}
+

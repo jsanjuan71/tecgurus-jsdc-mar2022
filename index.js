@@ -75,7 +75,7 @@ window.productos.agregar(
     300,
     3,
     "Inicia en el maravilloso mundo de C#",
-    "csharp.jpeg ",
+    "csharp.jpeg",
     "curso"
 );
 /*productos.push({

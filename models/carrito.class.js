@@ -44,8 +44,72 @@ class Carrito{
      * 
      * @returns {number} El subtotal sin impuestos de la suma del subtotal de todos los items
      */
-    verSubtotal = ()=> this.#items.map(item => item.calcularSubtotal() ).reduce( (prev, cur)=> prev + cur );
 
+    verSubtotal__2 = ()=> {
+        var total = 0;
+        this.#items.map(item  => {
+            //console.log(item);
+            let sku= item.sku;
+            let prod = window.productos.obtenerPorSKU(sku);
+            
+            let sub = prod.precio * item.cantidad;
+            console.log(sku, sub);
+            total += sub;
+        } )
+        console.log("total", total);
+
+        this.#items.map(item => {
+            let sub = item.calcularSubtotal();
+            console.log("sku", item.sku, "sub", sub);
+        })
+
+        const subtotales = this.#items.map(item => item.calcularSubtotal() );
+        console.log("subtotales", subtotales);
+
+        const sumatoria = [10, 20, 30, 50, 10].reduce((prev, next)=> prev + next );
+
+        const gran_total = subtotales.reduce((prev, next) => prev + next);
+
+        console.log("gran total", gran_total);
+
+        console.log("sumatoria", sumatoria);
+    }
+
+    verSubtotal = ()=> this.#items.map(item => item.calcularSubtotal() ).reduce( (prev, next)=> prev + next );
+
+    verSubtotalAsyn() {
+        console.log("licuar los tomates");
+        console.log("cocer la pasta");
+        window.setTimeout( function(){
+            console.log("apagarle la pasta");
+            console.log("mezclar y servir");
+        }, 3000 );
+        
+    }
+
+    async verSubtotalPromise() {
+        return new Promise( (resolve, reject) => {
+            window.setTimeout(function(){
+                let randNum = obtenerAleatorio();
+                console.log("randNum", randNum);
+                if( randNum > 5 ) 
+                    resolve( randNum );
+                else
+                    reject( "No obtuviste un numero mayor a 5" );
+            }, 3 * 1000);
+        });
+    }
+
+    async verProductosConPromo(num) {
+        return new Promise( (done, notdone) => {
+            window.setTimeout(function(){
+                if( num  === 8 ) 
+                    done( 50 );
+                else
+                    done( 20);
+            }, 5 * 1000);
+        });
+    }
 }
 
 export {Carrito}

@@ -20,15 +20,20 @@ const totalContainer = document.getElementById("total");
 
 cart.verItems().forEach(item => {
     let prod = window.productos.obtenerPorSKU( item.sku );
-    const newRow = getRowLayout( [
-        getProductImage(prod.imagen),
-        prod.nombre, 
-        `$${prod.precio.toFixed(2)}`,
-        item.cantidad,
-        `$${(prod.precio * item.cantidad).toFixed(2)}`
-    ] );
-    cartContainer.innerHTML += newRow;
+    if(prod) {
+        const newRow = getRowLayout( [
+            getProductImage(prod.imagen),
+            prod.nombre, 
+            `$${prod.precio.toFixed(2)}`,
+            item.cantidad,
+            `$${(prod.precio * item.cantidad).toFixed(2)}`
+        ] );
+        cartContainer.innerHTML += newRow;
+    }
+    
 });
+
+//cart.verSubtotal__2();
 
 const subtotal =  cart.verSubtotal();
 const impuestos = subtotal * IVA;
@@ -38,3 +43,84 @@ subtotalContainer.innerHTML = priceFormatted( subtotal );
 impuestosContainer.innerHTML = priceFormatted(impuestos);
 totalContainer.innerHTML = priceFormatted(total);
 
+
+//cart.verSubtotalAsyn();
+
+const promesa = cart.verSubtotalPromise();
+
+console.log("promesa", promesa);
+
+promesa.then( (numero) => {
+    console.log("logrado", numero);
+});
+
+promesa.catch( (error) => {
+    console.error("fallamos", error);
+});
+
+// Promesa con then-catch (then-catch promises) 
+/*cart.verSubtotalPromise()
+    .then( numero=> {
+        console.log("logrado", numero);
+        cart.verProductosConPromo( numero )
+            .then( descuento => { //callback-hell
+                if( descuento == 50 ){
+                    cart.obtenerProductos50()
+                        .then()
+                        .catch()
+                } else {
+
+                }
+            });
+    })
+    .catch( error=> {
+        console.error("fallamos", error);
+    });
+console.log("jfhfh"); */
+
+// Promesa con async-await (async-await promises)
+
+// try-catch
+
+async function ruleta(){
+    console.log("inicia la ruleta...");
+    try {
+        const num = await cart.verSubtotalPromise();
+        const descuento = await cart.verProductosConPromo( num );
+        //const prods = await cart.obtenerProductos50(descuento);
+
+    } catch (error) {
+        console.log("catch (try-catch)", error);
+        console.log("Sigue participando");
+
+    } finally {
+        console.log("fin de la ruleta");
+    }
+}
+
+ruleta();
+
+/*HTTP 
+https://developer.mozilla.org/es/docs/Web/HTTP/Overview
+
+JSON
+https://www.w3schools.com/js/js_json.asp
+
+API
+REST
+RESTAPI
+https://www.redhat.com/es/topics/api/what-is-a-rest-api
+
+Request
+https://www.javascripture.com/Request
+
+Response
+https://www.javascripture.com/Response
+
+fetch()
+https://es.javascript.info/fetch
+*/
+
+// ver el precio del dolar
+// ver la informacion de un código postal
+// ver información de CURP
