@@ -30,7 +30,7 @@ formularioContainer.addEventListener("submit", function(eventData){
 
 } );
 
-cpInput.addEventListener("input", function(eventData){
+cpInput.addEventListener("input", async function(eventData){
     if(cpInput.value.length >= 5) {
         const req = new Request( CP_SERVER_API + "/" + cpInput.value +"?token=1525d2e1-2034-43a9-ac5b-273150ee9f26" , {
             method: "GET",
@@ -38,6 +38,24 @@ cpInput.addEventListener("input", function(eventData){
                 "Content-Type": "application/json"
             }
         } );
+        
+        try {
+            const response = await fetch(req);
+            const data = await response.json();
+            const primerAsentamiento = data.pop().response;
+            col.value = primerAsentamiento.asentamiento;
+            mun.value = primerAsentamiento.municipio;
+            cd.value = primerAsentamiento.ciudad;
+            edo.value = primerAsentamiento.estado;
+            console.log("fin del async-await");
+        } catch(error) {
+            console.error("ERROR", error);
+        } finally {
+            console.log("fin");
+        }
+
+        // thread -> hilo
+
         fetch(req)
             .then( response => {
                 response.json()
@@ -57,6 +75,8 @@ cpInput.addEventListener("input", function(eventData){
             .catch( error => {
                 console.error("FETCH ERROR", error);
             });
+        console.log("despues del fetch then-catch");
+        
     }
 })
 

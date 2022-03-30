@@ -87,6 +87,22 @@ class Carrito{
         
     }
 
+    async verTotalEnUSD(){
+        try {
+            const request = new Request( API_DIVISAS + "&base=EUR&symbols=MXN,USD");
+            const resp = await fetch(request);
+            const data = await resp.json();
+            const {USD, MXN} = data.rates;
+            const total = this.verSubtotal() * (1 + IVA)
+            const inEUR = total / MXN;
+            const inUSD = inEUR * USD;
+            return inUSD.toFixed(2);
+        } catch (error) {
+            console.log("Error verTotalEnDivisa", error);
+            return false;
+        }
+    }
+
     async verSubtotalPromise() {
         return new Promise( (resolve, reject) => {
             window.setTimeout(function(){
