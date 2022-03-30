@@ -36,7 +36,8 @@ const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del
     {"label": "Home", "page": "index"},
     {"label": "productos", "page": "views/productos"},
     {"label": "carrito", "page": "views/carrito"},
-    {"label": "contacto", "page": "views/contacto"}
+    {"label": "contacto", "page": "views/contacto"},
+    {"label": "cuenta", "page": "views/registro"}
 ];
 
 for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label y page configurados
