@@ -33,18 +33,18 @@ if(presentacion) // esto solo surte efecto en la portada
 const menu = document.getElementById("menu"); // obtener el menu
 const opciones = ["inicio", "productos","carrito"];
 const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del archivo de la pagina a navegar
-    {"label": "Home", "page": "index"},
-    {"label": "productos", "page": "views/productos"},
-    {"label": "carrito", "page": "views/carrito"},
-    {"label": "contacto", "page": "views/contacto"},
-    {"label": "cuenta", "page": "views/registro"}
+    {"label": "Home", "page": "views/home", "controller":null},
+    {"label": "productos", "page": "views/productos", "controller":"productos"},
+    {"label": "carrito", "page": "views/carrito", "controller":"cart"},
+    {"label": "contacto", "page": "views/contacto", "controller":"contacto"},
+    {"label": "cuenta", "page": "views/registro", "controller":"user"}
 ];
 
 for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label y page configurados
     menu.appendChild(
         stringToDOM(
-            `<li class="nav-item" onClick="clickOnMenu(this)" data-option="${opcion.page}">
-                <a class="nav-link ${window.location.pathname.includes(opcion.page)? "active":""} " href="#">${opcion.label}</a>
+            `<li class="nav-item" onClick="clickOnMenu(this)" data-page="${opcion.page}" data-controller="${opcion.controller}">
+                <a class="nav-link ${window.location.pathname.includes(opcion.page)? "active":""} " href="javascript:()=>false;">${opcion.label}</a>
             </li>`)
     );
 }
