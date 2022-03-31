@@ -43,3 +43,5 @@ function obtenerAleatorio(){
 const divisas = ["MXN","USD","COP"];
 
 const API_DIVISAS = "http://api.exchangeratesapi.io/latest?access_key=de81f58e5a86dbde26fec00de325f9bf";
+
+const API_BACKEND = "http://localhost:5000";

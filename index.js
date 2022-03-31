@@ -49,8 +49,37 @@ for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label 
     );
 }
 
+async function cargarProductos(){
+    try {
+       const req = new Request( API_BACKEND + "/productos" , {
+           "method": "GET",
+           "headers": {
+                "Content-Type": "application/json"
+           }
+       } );
+       const res = await fetch(req);
+       const productos = await res.json();
+       console.log(productos);
+       productos.map( prod => {
+            window.productos.agregar(
+                prod.sku,
+                prod.nombre,
+                prod.precio,
+                prod.existencia,
+                prod.descripcion, 
+                prod.imagen,
+                prod.categoria
+            )
+       } )
+    } catch (error) {
+        
+    }
+}
+
+cargarProductos();
+
 //const productos = [];
-window.productos.agregar( 
+/*window.productos.agregar( 
     "CURJSDC", 
     "Curso Javascript desde cero",
     229.516,
