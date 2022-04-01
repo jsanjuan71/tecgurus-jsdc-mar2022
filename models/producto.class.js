@@ -42,9 +42,21 @@ class Producto {
         else null; */
     }
 
+    toPlainObject(){
+        return {
+            "sku": this.#sku,
+            "nombre": this.nombre,
+            "precio": this.precio,
+            "descripcion": this.descripcion,
+            "existencia": this.#existencia,
+            "imagen": this.imagen,
+            "categoria": this.categoria
+        };
+    }
+
     getSKU = () => this.#sku; // getter para poder acceder al valor de una variable privada
 
-    //setSKU = sku => this.#sku = sku; // setter para poder alterar el valor de una variable privada
+    setSKU = sku => this.#sku = sku; // setter para poder alterar el valor de una variable privada
 }
 
 

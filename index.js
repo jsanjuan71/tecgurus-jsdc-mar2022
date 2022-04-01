@@ -3,6 +3,7 @@ import ContactoController from '/controllers/contacto.controller.js';
 import ProductoController from '/controllers/productos.controller.js';
 import CarritoController from '/controllers/cart.controller.js';
 import UserController from '/controllers/user.controller.js';
+import AdminController from '/controllers/admin.controller.js';
 
 window.productos = new ListaProductos();
 
@@ -35,13 +36,14 @@ if(presentacion) // esto solo surte efecto en la portada
     presentacion.innerHTML = finalParagraph;
 
 const menu = document.getElementById("menu"); // obtener el menu
-const opciones = ["inicio", "productos","carrito"];
+
 const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del archivo de la pagina a navegar
     {"label": "Home", "page": "views/home", "controller":null},
-    {"label": "productos", "page": "views/productos", "controller":"productos"},
-    {"label": "carrito", "page": "views/carrito", "controller":"cart"},
-    {"label": "contacto", "page": "views/contacto", "controller":"contacto"},
-    {"label": "cuenta", "page": "views/registro", "controller":"user"}
+    {"label": "Productos", "page": "views/productos", "controller":"productos"},
+    {"label": "Carrito", "page": "views/carrito", "controller":"cart"},
+    {"label": "Contacto", "page": "views/contacto", "controller":"contacto"},
+    {"label": "Cuenta", "page": "views/registro", "controller":"user"},
+    {"label": "Admin", "page": "views/administracion", "controller":"admin"}
 ];
 
 for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label y page configurados
@@ -56,8 +58,8 @@ for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label 
 async function cargarProductos(){
     try {
        const req = new Request( API_BACKEND + "/productos" , {
-           "method": "GET",
-           "headers": {
+           method: "GET",
+           headers: {
                 "Content-Type": "application/json"
            }
        } );
@@ -74,7 +76,7 @@ async function cargarProductos(){
                 prod.imagen,
                 prod.categoria
             )
-       } )
+        })
     } catch (error) {
         
     }
@@ -101,6 +103,10 @@ window.clickOnMenu = async function(eventData) {
                 break;
             case "user":
                 new UserController();
+                break;
+            case "admin":
+                new AdminController();
+                break;
 		}
 	}
 }

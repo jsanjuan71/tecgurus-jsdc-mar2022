@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Administrador de contenido</h1>
+    <form id="nuevo_producto">
+        <div class="row">
+            <div class="form-group">
+                <input  type="file" name="imagen" id="imagen_prod" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <input type="text" name="sku" class="form-control" placeholder="SKU">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre del producto">
+                </div>
+                <div class="col">
+                <input type="text" name="descripcion" class="form-control" placeholder="Descripción">
+                </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" name="precio" class="form-control" placeholder="Precio">
+            </div>
+            <div class="col">
+                <input type="number" name="existencia" class="form-control" placeholder="Existencia">
+            </div>
+            <div class="col">
+                <select class="form-control" placeholder="Categoria" name="c    tegoria">
+                    <option value="-">Categoria</option>
+                    <option value="Curso">Curso</option>
+                    <option value="suvenir">Suvenir</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-primary" value="Guardar">
+            </div>
+        </div>
+    </form>
+</div>        
+<hr>
