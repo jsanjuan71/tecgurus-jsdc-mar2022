@@ -1,4 +1,8 @@
 import ListaProductos from '/models/listaProductos.class.js';
+import ContactoController from '/controllers/contacto.controller.js';
+import ProductoController from '/controllers/productos.controller.js';
+import CarritoController from '/controllers/cart.controller.js';
+import UserController from '/controllers/user.controller.js';
 
 window.productos = new ListaProductos();
 
@@ -43,7 +47,7 @@ const opcionesAdvanced = [ // label es lo que el usuario ve y page el nombre del
 for (const opcion of opcionesAdvanced) { // desplegar el menu pero con su label y page configurados
     menu.appendChild(
         stringToDOM(
-            `<li class="nav-item" onClick="clickOnMenu(this)" data-page="${opcion.page}" data-controller="${opcion.controller}">
+            `<li class="nav-item" onClick="window.clickOnMenu(this)" data-page="${opcion.page}" data-controller="${opcion.controller}">
                 <a class="nav-link ${window.location.pathname.includes(opcion.page)? "active":""} " href="javascript:()=>false;">${opcion.label}</a>
             </li>`)
     );
@@ -78,88 +82,25 @@ async function cargarProductos(){
 
 cargarProductos();
 
-//const productos = [];
-/*window.productos.agregar( 
-    "CURJSDC", 
-    "Curso Javascript desde cero",
-    229.516,
-    10,
-    "Inicia en el maravilloso mundo de JS",
-    "javascript.png",
-    "curso"
-);
-
-window.productos.agregar( 
-    "CURJAVADC", 
-    "Java desde cero",
-    199,
-    5,
-    "Inicia en el maravilloso mundo de Java",
-    "java.jpeg",
-    "curso"
-);
-
-window.productos.agregar( 
-    "CURCHSARPDC", 
-    "Curso C#  desde cero",
-    300,
-    3,
-    "Inicia en el maravilloso mundo de C#",
-    "csharp.jpeg",
-    "curso"
-);
-/*productos.push({
-    "sku": "CURJSDC", 
-    "nombre": "Curso Javascript desde cero",
-    "precio": 229.516,
-    "descripcion": "Inicia en el maravilloso mundo de JS",
-    "imagen":"javascript.png",
-    "existencia": 1
-});
-
-window.productos.push({
-    "sku": "CURJAVADC",
-    "nombre": "Java desde cero",
-    "precio": 199,
-    "descripcion": "Inicia en el maravilloso mundo de Java",
-    "imagen":"java.jpeg",
-    "existencia": 0
-});
-
-window.productos.push({
-    "sku": "CURCHSARPDC",
-    "nombre": "Curso C#  desde cero",
-    "precio": 300,
-    "descripcion": "Inicia en el maravilloso mundo de React native",
-    "imagen":"csharp.jpeg",
-    "existencia": 1
-});
-
-window.productos.push({
-    "sku": "CURAWSDC",
-    "nombre": "Curso AWS desde cero",
-    "precio": 149,
-    "descripcion": "Inicia en el maravilloso mundo de React native",
-    "imagen":"aws.jpeg",
-    "existencia": 1,
-    "categoria" : "curso"
-});
-window.productos.push({
-    "sku": "CURAWSDC",
-    "nombre": "Jersey somos Gurus",
-    "precio": 345,
-    "descripcion": "Inicia en el maravilloso mundo de React native",
-    "imagen":"aws.jpeg",
-    "existencia": 2,
-    "categoria" : "suvenir"
-});
-
-window.productos.push({
-    "sku": "CURNODEJSDC",
-    "nombre": "Curso nodejs desde cero",
-    "precio": 349,
-    "descripcion": "Inicia en el maravilloso mundo de React native ultimo",
-    "imagen":"nodejs.png",
-    "existencia": 1
-});
-*/
+window.clickOnMenu = async function(eventData) {
+	const {page, controller} = eventData.dataset;
+	const contactoTemplate = await fetch(`/${page}.html`);
+	const template = await contactoTemplate.text();
+	const mainContainer = document.getElementById("mainContainer");
+	mainContainer.innerHTML = template;
+	if(controller){
+		switch (controller) {
+			case "contacto":
+				new ContactoController();
+				break;
+			case "productos":
+				new ProductoController();
+                break;
+            case "cart":
+                new CarritoController();
+                break;
+            case "user":
+                new UserController();
+		}
+	}
+}

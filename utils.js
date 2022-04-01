@@ -22,22 +22,7 @@ function getRowLayout( dataList ) {
 	return template;
 }
 
-async function clickOnMenu(eventData) {
-	const {page, controller} = eventData.dataset;
-	const contactoTemplate = await fetch(`/${page}.html`);
-	const template = await contactoTemplate.text();
-	console.log("contacto", template);
-	const mainContainer = document.getElementById("mainContainer");
-	mainContainer.innerHTML = template;
-	if(controller){
-		const newScript = document.createElement("script");
-		newScript.setAttribute("type","module")
-		newScript.setAttribute("src",`/controllers/${controller}.controller.js`);
-		mainContainer.appendChild(newScript);
-	}
-	
-	//window.location.replace(`/${page}.html`);
-}
+
 
 function getProductImage(imageName) {
 	return `<img width="120px" src="/assets/images/products/${imageName}" />`;
